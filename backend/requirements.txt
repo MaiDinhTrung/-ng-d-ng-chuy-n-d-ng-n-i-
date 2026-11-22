@@ -1,0 +1,8 @@
+﻿fastapi
+uvicorn
+python-multipart
+numpy
+soundfile
+zerotts==0.1.5
+pytest
+httpx

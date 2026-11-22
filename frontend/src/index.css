@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --color-bg: #0e1116;
+  --color-panel: #161b22;
+  --color-panel2: #1c232d;
+  --color-line: #2a323d;
+  --color-muted: #8b96a5;
+  --color-accent: #6ea8fe;
+}
+
+html, body, #root { height: 100%; }
+body { background: var(--color-bg); color: #e6edf3; font-family: var(--font-sans); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #2a323d; border-radius: 8px; }
+
+.input { background: #0e1116; border: 1px solid var(--color-line); border-radius: 8px; padding: 6px 10px; color: inherit; width: 100%; }
+.input:focus { outline: 2px solid #3b82f650; border-color: #3b82f6; }
+.btn { border: 1px solid var(--color-line); background: var(--color-panel2); border-radius: 8px; padding: 6px 12px; font-size: 14px; cursor: pointer; transition: background .15s; }
+.btn:hover:not(:disabled) { background: #263040; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-primary { background: #2563eb; border-color: #2563eb; color: white; }
+.btn-primary:hover:not(:disabled) { background: #1d4ed8; }
+.btn-danger:hover:not(:disabled) { background: #5b1d24; border-color: #8b2a35; }
