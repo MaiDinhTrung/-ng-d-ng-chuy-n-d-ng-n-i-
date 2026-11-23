@@ -1,4 +1,4 @@
-"""Cấu hình ứng dụng. Không chứa bí mật; mọi thứ đều chạy local."""
+"""Cấu hình ứng dụng. Không chứa bí mật; khóa API đọc từ .env (xem services/secret_store.py)."""
 from __future__ import annotations
 
 import glob
@@ -12,8 +12,11 @@ AUDIO_DIR = DATA_DIR / "audio"          # {segment_id}.raw.wav / {segment_id}.wa
 EXPORT_DIR = DATA_DIR / "exports"
 VOICES_DIR = DATA_DIR / "voices"        # voice pack do người dùng thêm
 DB_PATH = DATA_DIR / "studio.db"
+STUDIO2D_DIR = DATA_DIR / "studio2d"    # phân hệ 2D Animation: tư liệu, ảnh, video (tách khỏi audio)
+S2D_REF_DIR = STUDIO2D_DIR / "references"
+S2D_THUMB_DIR = STUDIO2D_DIR / "thumbs"
 
-for _d in (DATA_DIR, AUDIO_DIR, EXPORT_DIR, VOICES_DIR):
+for _d in (DATA_DIR, AUDIO_DIR, EXPORT_DIR, VOICES_DIR, STUDIO2D_DIR, S2D_REF_DIR, S2D_THUMB_DIR):
     _d.mkdir(parents=True, exist_ok=True)
 
 # Phải đặt trước khi import zerotts: thư mục giọng của người dùng nằm trong data/.

@@ -4,12 +4,13 @@ import { AudioPlayer, type PlayerSource } from "./components/AudioPlayer";
 import { History } from "./views/History";
 import { Projects } from "./views/Projects";
 import { Quick } from "./views/Quick";
+import { Studio2D } from "./studio2d/Studio2D";
 import { Settings } from "./views/Settings";
 import { Studio } from "./views/Studio";
 import { VoiceLibrary } from "./views/VoiceLibrary";
 
-type View = "quick" | "studio" | "projects" | "voices" | "history" | "settings";
-const NAV: [View, string, string][] = [["quick", "⚡", "Tạo nhanh"], ["studio", "✎", "Chỉnh sửa chi tiết"], ["projects", "🗂", "My Projects"], ["voices", "🎙", "Voice Library"], ["history", "🕘", "Audio History"], ["settings", "⚙", "Settings"]];
+type View = "quick" | "studio" | "projects" | "voices" | "history" | "settings" | "s2d";
+const NAV: [View, string, string][] = [["quick", "⚡", "Tạo nhanh"], ["studio", "✎", "Chỉnh sửa chi tiết"], ["projects", "🗂", "My Projects"], ["voices", "🎙", "Voice Library"], ["history", "🕘", "Audio History"], ["s2d", "🎬", "2D Studio"], ["settings", "⚙", "Settings"]];
 
 export default function App() {
   const [view, setView] = useState<View>(() => (new URLSearchParams(location.search).get("p") ? "studio" : "quick"));
@@ -74,6 +75,7 @@ export default function App() {
             onDelete={async (id) => { try { await api.deleteProject(id); if (id === pid) open(null); reloadProjects(); } catch (e) { setErr(String(e)); } }} />}
           {view === "voices" && <VoiceLibrary voices={voices} cloning={cloning} reload={reloadVoices} setPlayer={setPlayer} />}
           {view === "history" && <History setPlayer={setPlayer} onOpen={open} />}
+          {view === "s2d" && <div className="h-full"><Studio2D voices={voices} /></div>}
           {view === "settings" && <Settings prefs={prefs} setPrefs={setPrefs} health={health} engines={engines} />}
         </main>
       </div>
